@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+  </head>
+  <body>
+    <h1>Testar fetch-anrop</h1>
+
+    <script>
+      const url = "http://127.0.0.1:3000/api/workexperience";
+
+      getData();
+
+      async function getData() {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        console.table(data);
+      }
+
+      async function createUser(
+        companyName,
+        jobTitle,
+        location,
+        startDate,
+        endDate,
+        description
+      ) {
+        let workexperiences = {
+          companyName: companyName,
+          jobTitle: jobTitle,
+          location: location,
+          startDate: startDate,
+          endDate: endDate,
+          description: description,
+        };
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "content-type": "Application/json",
+          },
+          body: JSON.stringify(workexperiences),
+        });
+
+        const data = await response.json();
+        console.log(data);
+      }
+    </script>
+  </body>
+</html>
